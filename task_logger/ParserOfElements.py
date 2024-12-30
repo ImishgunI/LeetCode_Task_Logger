@@ -38,7 +38,13 @@ class ParserOfElements:
         if title:
             row.append(title.text)
 
-        level = soup.find("div", class_="relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-difficulty-easy dark:text-difficulty-easy")
+        level = soup.find(
+            "div", 
+            class_="relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-difficulty-easy dark:text-difficulty-easy") or soup.find(
+                "div", 
+                class_="relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-difficulty-medium dark:text-difficulty-medium") or soup.find(
+                    "div", 
+                    class_="relative inline-flex items-center justify-center text-caption px-2 py-1 gap-1 rounded-full bg-fill-secondary text-difficulty-hard dark:text-difficulty-hard")
         if level:
             row.append(level.text)
         
@@ -47,5 +53,3 @@ class ParserOfElements:
         if acceptance_rate:
                 row.append(acceptance_rate.text)
         return row
-
-
